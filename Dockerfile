@@ -13,11 +13,11 @@ WORKDIR /app
 # Clone InstructLab repo
 RUN git clone https://github.com/instructlab/instructlab.git .
 
-# Pre-install pip tools and upgrade pip
+# Upgrade pip tools
 RUN pip install --upgrade pip setuptools wheel
 
 # Install InstructLab
 RUN pip install --no-cache-dir .
 
-# Optional: keep container alive in OpenShift for debugging or manual use
+# Keep container alive for testing
 CMD ["tail", "-f", "/dev/null"]
