@@ -1,4 +1,4 @@
-FROM python:3.10-slim
+FROM python:3.11-slim
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
@@ -10,11 +10,11 @@ RUN apt-get update && apt-get install -y \
 # Set working directory
 WORKDIR /app
 
-# Clone the instructlab repo
-RUN git clone https://github.com/instructlab/instructlab.git . 
+# Clone the InstructLab repo
+RUN git clone https://github.com/instructlab/instructlab.git .
 
-# Install Python dependencies
+# Install InstructLab and dependencies
 RUN pip install --no-cache-dir .
 
-# Default command
+# Keep container alive for interactive use, or change to desired command
 CMD ["ilab", "--help"]
