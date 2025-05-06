@@ -10,11 +10,14 @@ RUN apt-get update && apt-get install -y \
 # Set working directory
 WORKDIR /app
 
-# Clone the InstructLab repo
+# Clone InstructLab repo
 RUN git clone https://github.com/instructlab/instructlab.git .
 
-# Install InstructLab and dependencies
+# Pre-install pip tools and upgrade pip
+RUN pip install --upgrade pip setuptools wheel
+
+# Install InstructLab
 RUN pip install --no-cache-dir .
 
-# Keep container alive for interactive use, or change to desired command
-CMD ["ilab", "--help"]
+# Optional: keep container alive in OpenShift for debugging or manual use
+CMD ["tail", "-f", "/dev/null"]
